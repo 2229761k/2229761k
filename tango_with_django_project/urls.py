@@ -26,3 +26,6 @@ urlpatterns = [
     # the rango application
     url(r'^admin/', admin.site.urls),
 ]
+
+from django.conf import settings
+from django.conf.urls.static import static
