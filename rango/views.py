@@ -6,7 +6,7 @@ from rango.models import Page
 
 
 def about(request):
-    return HttpResponse("Rango says here is the about page.")
+    return render(request, 'rango/about.html')
 
 def index(request):
     # Query the database for a list of ALL categories currently stored.
