@@ -26,6 +26,9 @@ urlpatterns = [
     url(r'^category/(?P<category_name_slug>[\w\-]+)/$',
         views.show_category, name='show_category'),
     url(r'^page/(?P<page_name_slug>[\w\-]+)/$',
-        views.show_page, name='show_page')
+        views.show_page, name='show_page'),
+    url(r'^add_category/$', views.add_category, name='add_category'),
+    url(r'^add_page/(?P<add_page_name_slug>[\w\-]+)/$',
+        views.show_add_page, name='show_add_page'),
 ]
 
