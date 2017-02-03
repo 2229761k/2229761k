@@ -20,6 +20,7 @@ from django.contrib import admin
 from django.conf.urls import include
 from rango import views
 
+app_name = 'rango'
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^about/', views.about, name='about'),
@@ -28,7 +29,7 @@ urlpatterns = [
     url(r'^page/(?P<page_name_slug>[\w\-]+)/$',
         views.show_page, name='show_page'),
     url(r'^add_category/$', views.add_category, name='add_category'),
-    url(r'^add_page/(?P<add_page_name_slug>[\w\-]+)/$',
-        views.show_add_page, name='show_add_page'),
+    url(r'^category/(?P<category_name_slug>[\w\-]+)/add_page/$',
+        views.add_page, name='add_page'),
 ]
 
