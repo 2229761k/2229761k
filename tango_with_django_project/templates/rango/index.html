@@ -5,7 +5,7 @@
 {% block body_block %}
 		<div>
         <h1>Rango says...</h1>
-
+		<p> visits: {{visits}}</p>
         <div>
             {% if user.is_authenticated %}
 				howdy {{ user.username }}!
@@ -13,7 +13,7 @@
 				hey there partner!
 			{% endif %}
         </div>
-
+		
         <div>
 		<h3>Most Linked Categories</h3>
         {% if categories %}

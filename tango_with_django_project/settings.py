@@ -19,9 +19,9 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [STATIC_DIR, ]
 STATIC_URL = '/static/'
 MEDIA_DIR = os.path.join(BASE_DIR, 'media')
-
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
+LOGIN_URL = '/rango/login/'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -31,6 +31,8 @@ SECRET_KEY = 'npa%acy@9^t_+3&g-7y+a4fwc-x&vv%&^z#o-!ajek9swoiq+n'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 ALLOWED_HOSTS = []
 

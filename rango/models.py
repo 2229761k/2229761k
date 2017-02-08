@@ -13,9 +13,6 @@ class Category(models.Model):
         self.slug = slugify(self.name)
         super(Category, self).save(*args, **kwargs)
 
-
-
-
     class Meta:
         verbose_name_plural = 'categories'
 
@@ -23,6 +20,7 @@ class Category(models.Model):
 
     def __str__(self):  # For Python 2, use __unicode__ too
         return self.name
+
 
     def __unicode__(self):
         return self.name
