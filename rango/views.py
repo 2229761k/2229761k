@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 # Import the Category model
 from rango.models import Category
@@ -7,7 +7,6 @@ from rango.forms import CategoryForm
 from rango.forms import PageForm
 from rango.forms import UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponseRedirect, HttpResponse
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
@@ -165,6 +164,7 @@ def register(request):
                    'registered': registered})
 
 
+
 def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -176,11 +176,11 @@ def user_login(request):
                 login(request, user)
                 return HttpResponseRedirect(reverse('index'))
             else:
-
                 return HttpResponse("Your Rango account is disabled")
         else:
             print("Invalid login details: {0}, {1}".format(username, password))
             return HttpResponse("Invalid login details supplied.")
+			
     else:
         return render(request, 'rango/login.html', {})
 
@@ -191,12 +191,11 @@ def some_view(request):
     else:
         return HttpResponse("You are not logged in.")
 
-@login_required
+
 def restricted(request):
     return HttpResponse("Since you're logged in, you can see this text!")
 
 
-@login_required
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('index'))
@@ -211,9 +210,11 @@ def get_server_side_cookie(request, cookie, default_val=None):
 
 def visitor_cookie_handler(request):
 
-    visits = int(request.COOKIES.get('visits','1'))
+    visits = int(get_server_side_cookie(request, 'visits', '1'))
 
-    last_visit_cookie = request.COOKIES.get('last_visit',str(datetime.now()))
+    last_visit_cookie = get_server_side_cookie(request,
+                                               'last_visit',
+                                               str(datetime.now()))
     last_visit_time = datetime.strptime(last_visit_cookie[:-7],
                                         '%Y-%m-%d %H:%M:%S')
 
@@ -221,9 +222,8 @@ def visitor_cookie_handler(request):
         visits = visits + 1
         request.session['last_visit'] = str(datetime.now())
     else:
-        vists = 1
+        visits = 1
         request.session['last_visit'] = last_visit_cookie
-
-        request.session['visits'] = visits
+    request.session['visits'] = visits
 
 

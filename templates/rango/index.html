@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 {% extends 'rango/base.html' %}
 {% load staticfiles %}
-{% block title_block %}Index{% endblock %}
+{% block title %}Rango{% endblock %}
+
 {% block body_block %}
-		<div>
+
         <h1>Rango says...</h1>
 		<p> visits: {{visits}}</p>
         <div>
@@ -16,12 +17,15 @@
 		
         <div>
 		<h3>Most Linked Categories</h3>
+		
+		</div>
+		
         {% if categories %}
         <ul>
             {% for category in categories %}
             <!-- Following line changed to add an HTML hyperlink -->
             <li>
-				<a href="{%url 'rango:show_category' category.slug %}">{{ category.name }}
+				<a href="{%url 'show_category' category.slug %}">{{ category.name }}
 				</a>
             </li>
             {% endfor %}
@@ -49,7 +53,7 @@
         {% endif %}
 		</div>
         <div>
-            <a href={% url 'rango:about' %}>About</a>
+            <a href={% url 'about' %}>About</a>
 			<a href="/rango/add_category/">Add a New Category</a><br />
             <img src="{% static 'images/rango.jpg' %}" alt='Picture of Rango' /> 
         </div>
