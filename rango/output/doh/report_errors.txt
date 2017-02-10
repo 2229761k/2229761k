@@ -1,3 +1,0 @@
-I found errors while running the automated tests in github repository: https://github.com/2229761k/2229761k.git===========================================================================
-
-
